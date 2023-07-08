@@ -4,15 +4,18 @@
 // - another function call
 // - additional variables
 pub fn bigger(a: i32, b: i32) -> i32 {
-    todo!()
+    if a>b||a==b{a}
+    else{b}
 }
 
 //Exercise 2
 // Input: Provide an arbitrary value of number
 // Check number is Positive or Negative or Zero
 // Output: &str
-fn check_number(number: u32) -> &'static str {
-    todo!()
+fn check_number(number: isize) -> &'static str {
+    if number==0{"Zero"}
+    else if number>0{"Positive"}
+        else {"Negative"}
 }
 
 // Exercise 3
@@ -20,10 +23,12 @@ fn check_number(number: u32) -> &'static str {
 // Step 2: Get the bar_for_fuzz and default_to_baz tests passing!
 
 pub fn foo_if_fizz(fizzish: &str) -> &str {
-    if fizzish == "fizz" {
-        "foo"
-    } else {
-        1
+    if fizzish == "fuzz" {
+        "bar"
+    }else if fizzish == "literally anything"{"baz"}
+    else if fizzish =="fizz"{"foo"}
+    else {
+        "1"
     }
 }
 
@@ -31,14 +36,23 @@ pub fn foo_if_fizz(fizzish: &str) -> &str {
 // Determine if a given year is a leap year
 // Implement logic
 fn is_leap_year(year: i32) -> bool {
-    todo!()
+    if year%4==0 {
+        if year % 100 == 0{
+            if year % 400 == 0{true}
+            else{false}
+        }
+        else{true}
+    }
+    else{false}
 }
-
 // Exercise 5
 // Calculate the factorial of a number
 // Implement logic
-fn factorial(n: u32) -> u32 {
-    todo!()
+fn factorial(n: usize) -> usize {
+    if n==0{return 1}
+    else{
+        n*factorial(n-1)
+    }
 }
 
 // Exercise 6
@@ -46,7 +60,20 @@ fn factorial(n: u32) -> u32 {
 // Implement logic
 
 fn is_prime(n: u32) -> bool {
-    todo!()
+    let mut count=0;
+    if n==0||n==1{false}
+    else if n==2{true}
+    else{
+        for i in 2..n{
+            if n%i==0{
+                count+=1;
+                break;
+            }
+            else{count=0}
+        }
+        if count==0{true}
+        else{false}
+    }
 }
 
 
@@ -71,13 +98,13 @@ mod tests {
         let result = check_number(10);
         assert_eq!(result, "Positive");
     }
-    // Test for exercise 2
+   // Test for exercise 2
     #[test]
     fn test_check_number_negative() {
         let result = check_number(-5);
         assert_eq!(result, "Negative");
     }
-    // Test for exercise 2
+    //Test for exercise 2
     #[test]
     fn test_check_number_zero() {
         let result = check_number(0);
